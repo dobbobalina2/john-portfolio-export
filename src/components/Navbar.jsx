@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
 const navigation = [
@@ -17,94 +17,89 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 10;
-      if (isScrolled !== scrolled) {
-        setScrolled(isScrolled);
-      }
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [scrolled]);
+  }, []);
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${
-      scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm' : 'bg-transparent'
-    }`}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex-shrink-0">
-            <Link href="/" className="font-heading text-xl font-bold text-primary">
-              John Kenny
-            </Link>
+    <nav
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+        scrolled ? 'backdrop-blur-xl bg-[#0b1021]/80 border-b border-white/10' : 'bg-transparent'
+      }`}
+    >
+      <div className="container flex items-center justify-between h-16">
+        <Link href="/" className="flex items-center space-x-2 text-white">
+          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/20 text-primary font-semibold">
+            JK
+          </span>
+          <div className="leading-tight">
+            <p className="text-sm uppercase tracking-[0.2em] text-white/60">Portfolio</p>
+            <p className="text-base font-semibold">John Kenny</p>
           </div>
-          
-          {/* Desktop menu */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-center space-x-8">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="font-medium text-secondary hover:text-primary transition-colors duration-200"
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <a 
-                href="#contact" 
-                className="btn btn-primary"
-              >
-                Hire Me
-              </a>
-            </div>
-          </div>
-          
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-secondary hover:text-primary focus:outline-none"
-            >
-              <span className="sr-only">Open main menu</span>
-              {isOpen ? (
-                <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
-              ) : (
-                <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
-              )}
-            </button>
-          </div>
-        </div>
-      </div>
+        </Link>
 
-      {/* Mobile menu */}
-      <motion.div 
-        className={`md:hidden ${isOpen ? 'block' : 'hidden'}`}
-        initial={{ opacity: 0, height: 0 }}
-        animate={{ opacity: isOpen ? 1 : 0, height: isOpen ? 'auto' : 0 }}
-        transition={{ duration: 0.3 }}
-      >
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg">
+        <div className="hidden md:flex items-center space-x-2">
           {navigation.map((item) => (
             <Link
               key={item.name}
               href={item.href}
-              className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50"
-              onClick={() => setIsOpen(false)}
+              className="relative px-3 py-2 text-sm font-medium text-white/70 hover:text-white"
             >
-              {item.name}
+              <span>{item.name}</span>
+              <motion.span
+                className="absolute left-1/2 bottom-1 h-px w-0 bg-primary"
+                whileHover={{ width: '100%', left: 0 }}
+                transition={{ duration: 0.2 }}
+              />
             </Link>
           ))}
-          <a 
-            href="#contact" 
-            className="block w-full text-center btn btn-primary mt-4"
-            onClick={() => setIsOpen(false)}
-          >
-            Hire Me
-          </a>
+          <Link href="/contact" className="btn btn-primary text-sm px-4 py-2">
+            Book a call
+          </Link>
         </div>
-      </motion.div>
+
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden inline-flex items-center justify-center p-2 text-white"
+          aria-label="Toggle navigation"
+        >
+          {isOpen ? <XMarkIcon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}
+        </button>
+      </div>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25 }}
+            className="md:hidden border-t border-white/10 bg-[#0b1021]/95"
+          >
+            <div className="container py-4 space-y-2">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className="block rounded-lg px-4 py-3 text-white/80 hover:text-white hover:bg-white/5"
+                >
+                  {item.name}
+                </Link>
+              ))}
+              <Link
+                href="/contact"
+                onClick={() => setIsOpen(false)}
+                className="btn btn-primary w-full"
+              >
+                Book a call
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
