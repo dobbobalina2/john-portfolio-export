@@ -9,10 +9,24 @@
 
 @layer base {
   body {
-    @apply antialiased;
+    @apply antialiased text-dark bg-light;
   }
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-heading font-bold;
+  }
+
+  .bg-gradient {
+    @apply bg-[#0b1021] text-white;
+    background-image: radial-gradient(circle at 10% 20%, rgba(0, 112, 243, 0.12), transparent 30%),
+      radial-gradient(circle at 90% 10%, rgba(59, 130, 246, 0.12), transparent 25%),
+      radial-gradient(circle at 30% 80%, rgba(255, 255, 255, 0.05), transparent 35%),
+      linear-gradient(145deg, rgba(255, 255, 255, 0.02), rgba(15, 23, 42, 0.8));
   }
 }
 
@@ -20,22 +34,32 @@
   .container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
+
+  .panel {
+    @apply rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_20px_60px_-24px_rgba(0,0,0,0.45)];
+  }
+
   .btn {
-    @apply inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm transition-all duration-200;
+    @apply inline-flex items-center justify-center px-5 py-3 border border-transparent text-sm font-semibold rounded-xl shadow-md transition-all duration-200;
   }
+
   .btn-primary {
-    @apply bg-primary text-white hover:bg-primary/90;
+    @apply bg-primary text-white hover:bg-primary/90 shadow-primary/30 shadow-lg;
   }
+
   .btn-secondary {
-    @apply bg-secondary text-white hover:bg-secondary/90;
+    @apply bg-white text-dark hover:bg-white/90;
   }
+
   .btn-outline {
-    @apply border-primary text-primary hover:bg-primary hover:text-white;
+    @apply border-white/30 text-white hover:bg-white hover:text-dark;
   }
+
   .section {
     @apply py-16 md:py-24;
   }
+
   .card {
-    @apply bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300;
+    @apply bg-white/5 border border-white/10 rounded-2xl shadow-lg backdrop-blur-xl hover:shadow-2xl transition-all duration-300;
   }
 }
