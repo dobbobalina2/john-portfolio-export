@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { usePathname } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -15,96 +17,129 @@ const navigation = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 10;
-      if (isScrolled !== scrolled) {
-        setScrolled(isScrolled);
-      }
+      const isScrolled = window.scrollY > 20;
+      setScrolled(isScrolled);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [scrolled]);
+  }, []);
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${
-      scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm' : 'bg-transparent'
-    }`}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex-shrink-0">
-            <Link href="/" className="font-heading text-xl font-bold text-primary">
-              John Kenny
-            </Link>
-          </div>
-          
-          {/* Desktop menu */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-center space-x-8">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="font-medium text-secondary hover:text-primary transition-colors duration-200"
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <a 
-                href="#contact" 
-                className="btn btn-primary"
+    <>
+      <nav
+        className={`fixed w-full z-50 transition-all duration-300 border-b ${
+          scrolled
+            ? 'bg-background/80 backdrop-blur-xl border-border/40 py-2'
+            : 'bg-transparent border-transparent py-4'
+        }`}
+      >
+        <div className="container-width">
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <div className="flex-shrink-0 relative group cursor-pointer z-50">
+              <Link href="/" className="font-heading text-2xl font-bold tracking-tighter">
+                <span className="text-foreground group-hover:text-primary transition-colors">John</span>
+                <span className="text-primary group-hover:text-foreground transition-colors">.dev</span>
+              </Link>
+            </div>
+
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center space-x-1">
+              <div className="flex items-center bg-secondary/30 backdrop-blur-sm px-2 py-1.5 rounded-full border border-white/5 mr-4">
+                {navigation.map((item) => {
+                  const isActive = pathname === item.href;
+                  return (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-full ${
+                        isActive ? 'text-primary' : 'text-muted-foreground hover:text-foreground'
+                      }`}
+                    >
+                      {isActive && (
+                        <motion.div
+                          layoutId="navbar-indicator"
+                          className="absolute inset-0 bg-secondary/80 rounded-full -z-10"
+                          transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+                        />
+                      )}
+                      {item.name}
+                    </Link>
+                  );
+                })}
+              </div>
+              
+              <Button 
+                variant="default" 
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-lg shadow-primary/20"
+                asChild
               >
-                Hire Me
-              </a>
+                <Link href="/contact">Hire Me</Link>
+              </Button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden z-50">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsOpen(!isOpen)}
+                className="text-foreground hover:bg-secondary/50"
+              >
+                {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </Button>
             </div>
           </div>
-          
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-secondary hover:text-primary focus:outline-none"
-            >
-              <span className="sr-only">Open main menu</span>
-              {isOpen ? (
-                <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
-              ) : (
-                <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
-              )}
-            </button>
-          </div>
         </div>
-      </div>
+      </nav>
 
-      {/* Mobile menu */}
-      <motion.div 
-        className={`md:hidden ${isOpen ? 'block' : 'hidden'}`}
-        initial={{ opacity: 0, height: 0 }}
-        animate={{ opacity: isOpen ? 1 : 0, height: isOpen ? 'auto' : 0 }}
-        transition={{ duration: 0.3 }}
-      >
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg">
-          {navigation.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50"
-              onClick={() => setIsOpen(false)}
-            >
-              {item.name}
-            </Link>
-          ))}
-          <a 
-            href="#contact" 
-            className="block w-full text-center btn btn-primary mt-4"
-            onClick={() => setIsOpen(false)}
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl md:hidden pt-24 px-6"
           >
-            Hire Me
-          </a>
-        </div>
-      </motion.div>
-    </nav>
+            <div className="flex flex-col space-y-4">
+              {navigation.map((item, idx) => (
+                <motion.div
+                  key={item.name}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1 + idx * 0.05 }}
+                >
+                  <Link
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    className={`text-2xl font-bold tracking-tight block py-2 ${
+                       pathname === item.href ? 'text-primary' : 'text-foreground'
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                </motion.div>
+              ))}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="pt-8"
+              >
+                 <Button className="w-full text-lg py-6" onClick={() => setIsOpen(false)} asChild>
+                    <Link href="/contact">Let's Work Together</Link>
+                 </Button>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

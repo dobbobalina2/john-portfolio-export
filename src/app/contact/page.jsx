@@ -57,16 +57,7 @@ export default function Contact() {
       content: 'JohnKenny6799@gmail.com',
       link: 'mailto:JohnKenny6799@gmail.com'
     },
-    {
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-        </svg>
-      ),
-      title: 'Phone',
-      content: '+1 (301)-357-0728',
-      link: 'tel:+13013570728'
-    },
+
     {
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -132,7 +123,7 @@ export default function Contact() {
         </section>
 
         {/* Contact Form & Info */}
-        <section className="section bg-white">
+        <section className="section bg-transparent">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Contact Form */}
@@ -145,7 +136,7 @@ export default function Contact() {
                 <h2 className="text-3xl font-bold mb-6">Send Me a Message</h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="name" className="block text-sm font-medium text-muted-foreground mb-1">
                       Name
                     </label>
                     <input
@@ -154,13 +145,13 @@ export default function Contact() {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                      className="w-full px-4 py-3 bg-secondary/20 border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-foreground placeholder-muted-foreground"
                       placeholder="Your Name"
                       required
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="email" className="block text-sm font-medium text-muted-foreground mb-1">
                       Email
                     </label>
                     <input
@@ -169,13 +160,13 @@ export default function Contact() {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                      className="w-full px-4 py-3 bg-secondary/20 border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-foreground placeholder-muted-foreground"
                       placeholder="Your Email"
                       required
                     />
                   </div>
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="subject" className="block text-sm font-medium text-muted-foreground mb-1">
                       Subject
                     </label>
                     <input
@@ -184,13 +175,13 @@ export default function Contact() {
                       name="subject"
                       value={formData.subject}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                      className="w-full px-4 py-3 bg-secondary/20 border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-foreground placeholder-muted-foreground"
                       placeholder="Subject"
                       required
                     />
                   </div>
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="message" className="block text-sm font-medium text-muted-foreground mb-1">
                       Message
                     </label>
                     <textarea
@@ -199,7 +190,7 @@ export default function Contact() {
                       value={formData.message}
                       onChange={handleChange}
                       rows={5}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                      className="w-full px-4 py-3 bg-secondary/20 border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-foreground placeholder-muted-foreground"
                       placeholder="Your Message"
                       required
                     ></textarea>
@@ -212,7 +203,7 @@ export default function Contact() {
                   </button>
                   
                   {formStatus.submitted && (
-                    <div className={`mt-4 p-4 rounded-md ${formStatus.success ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`}>
+                    <div className={`mt-4 p-4 rounded-md ${formStatus.success ? 'bg-green-900/20 text-green-400 border border-green-900/50' : 'bg-red-900/20 text-red-400 border border-red-900/50'}`}>
                       {formStatus.message}
                     </div>
                   )}
@@ -237,7 +228,7 @@ export default function Contact() {
                         <h4 className="text-lg font-semibold">{item.title}</h4>
                         <a 
                           href={item.link} 
-                          className="text-gray-600 hover:text-primary transition-colors duration-200"
+                          className="text-muted-foreground hover:text-primary transition-colors duration-200"
                         >
                           {item.content}
                         </a>
@@ -260,9 +251,9 @@ export default function Contact() {
                   ))}
                 </div>
 
-                <div className="mt-12 p-6 bg-light rounded-xl">
+                <div className="mt-12 p-6 glass-card rounded-xl">
                   <h3 className="text-xl font-bold mb-4">Working Hours</h3>
-                  <ul className="space-y-2">
+                  <ul className="space-y-2 text-muted-foreground">
                     <li className="flex justify-between">
                       <span className="font-medium">Monday - Friday:</span>
                       <span>9:00 AM - 6:00 PM</span>
@@ -283,7 +274,7 @@ export default function Contact() {
         </section>
 
         {/* Map or Additional Section */}
-        <section className="section bg-light">
+        <section className="section bg-transparent">
           <div className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -294,14 +285,14 @@ export default function Contact() {
             >
               <h2 className="text-3xl font-bold mb-4">Let's Work Together</h2>
               <div className="w-20 h-1 bg-primary mx-auto"></div>
-              <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+              <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
                 I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.
               </p>
             </motion.div>
 
-            <div className="bg-white rounded-xl shadow-md p-8 text-center">
+            <div className="glass-card rounded-xl shadow-md p-8 text-center">
               <h3 className="text-2xl font-bold mb-4">Ready to start your next project?</h3>
-              <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+              <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
                 Whether you need a custom web application, blockchain integration, or technical consultation, 
                 I'm here to help turn your ideas into reality.
               </p>

@@ -65,9 +65,7 @@ export default function Footer() {
             <p className="text-gray-300 mb-2">
               <span className="font-semibold">Email:</span> JohnKenny6799@gmail.com
             </p>
-            <p className="text-gray-300 mb-2">
-              <span className="font-semibold">Phone:</span> +1 (301)-357-0728
-            </p>
+        
             <p className="text-gray-300">
               <span className="font-semibold">Location:</span> Global
             </p>
