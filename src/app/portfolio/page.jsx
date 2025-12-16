@@ -65,7 +65,7 @@ export default function Portfolio() {
         "Led the successful migration of a 15-year-old legacy news site from Joomla 1.3 to Joomla 3.0, managing over 30,000 data points within its MySQL database.",
         "Demonstrated the ability to quickly learn and adapt by taking ownership of the project despite having no prior experience with PHP at the outset.",
         "Designed, developed, and launched a completely new website for the same client, handling both front-end development and back-end maintenance.",
-        "Tech stack: PHP, Linux, JavaScript, HTML, CSS3, and MySQL.",
+        "Upgraded archaic infrastructure to utilize the LAMP stack, driving incident reports down 43% and decreasing user reported bugs by 27%",
         "Responsibilities included front-end UI development, backend bug fixing, database management, and ongoing optimization for performance and reliability."
       ],
       technologies: ["PHP", "Linux", "JavaScript", "HTML", "CSS3", "MySQL"]

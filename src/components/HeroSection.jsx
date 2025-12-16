@@ -58,7 +58,7 @@ export default function HeroSection() {
               I'm <span className="text-foreground font-semibold">John Kenny</span>, a Senior Software Engineer crafting exceptional web experiences and decentralized applications.
             </motion.h2>
 
-            <motion.div variants={itemVariants} className="flex flex-wrap gap-4 justify-center w-full">
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-4 w-full justify-start">
               <Button size="lg" className="text-base h-14 px-10 bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/25" asChild>
                 <a href="#projects" className="flex items-center justify-center gap-2">
                   View Work <ArrowRight className="h-4 w-4" />
