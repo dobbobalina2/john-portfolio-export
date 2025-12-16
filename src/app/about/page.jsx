@@ -118,7 +118,7 @@ export default function About() {
         </section>
 
         {/* Bio Section */}
-        <section className="section bg-white">
+        <section className="section bg-transparent">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <motion.div
@@ -129,7 +129,7 @@ export default function About() {
                 className="order-2 lg:order-1"
               >
                 <h2 className="text-3xl font-bold mb-6">My Story</h2>
-                <div className="space-y-4 text-gray-700">
+                <div className="space-y-4 text-muted-foreground">
                   <p>
                     I'm John Kenny, a Senior Software Engineer with a passion for building innovative digital solutions. 
                     My journey in technology began at the University of Maryland College Park, where I earned my Bachelor's 
@@ -159,14 +159,14 @@ export default function About() {
                 viewport={{ once: true }}
                 className="order-1 lg:order-2"
               >
-                <div className="relative w-full h-[500px] bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl overflow-hidden shadow-xl">
+                <div className="relative w-full h-[500px] glass-card rounded-2xl overflow-hidden shadow-xl border border-white/10">
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center">
                       <div className="w-32 h-32 rounded-full bg-primary/20 mx-auto mb-6 flex items-center justify-center">
                         <span className="text-5xl font-bold text-primary">JK</span>
                       </div>
-                      <p className="text-lg font-medium text-dark">John Kenny</p>
-                      <p className="text-gray-600">Senior Software Engineer</p>
+                      <p className="text-lg font-medium text-foreground">John Kenny</p>
+                      <p className="text-muted-foreground">Senior Software Engineer</p>
                     </div>
                   </div>
                 </div>
@@ -176,7 +176,7 @@ export default function About() {
         </section>
 
         {/* Education & Skills */}
-        <section className="section bg-light">
+        <section className="section bg-transparent">
           <div className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -196,7 +196,7 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-xl shadow-md p-8"
+                className="glass-card rounded-xl shadow-md p-8"
               >
                 <h3 className="text-2xl font-bold mb-6">Education</h3>
                 <div className="flex items-start">
@@ -209,8 +209,8 @@ export default function About() {
                   </div>
                   <div className="ml-6">
                     <h4 className="text-xl font-bold">{education.university}</h4>
-                    <p className="text-gray-600 mb-2">{education.location}</p>
-                    <p className="text-gray-700 mb-1">{education.degree}</p>
+                    <p className="text-muted-foreground mb-2">{education.location}</p>
+                    <p className="text-foreground mb-1">{education.degree}</p>
                     <p className="text-primary font-semibold">{education.year}</p>
                   </div>
                 </div>
@@ -222,7 +222,7 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-xl shadow-md p-8"
+                className="glass-card rounded-xl shadow-md p-8"
               >
                 <h3 className="text-2xl font-bold mb-6">Skills</h3>
                 <div className="space-y-6">
@@ -245,7 +245,7 @@ export default function About() {
                       {skills.management.map((skill, index) => (
                         <span 
                           key={index} 
-                          className="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full"
+                          className="px-3 py-1 bg-secondary/30 text-secondary-foreground text-sm rounded-full"
                         >
                           {skill}
                         </span>
@@ -258,7 +258,7 @@ export default function About() {
                       {skills.finance.map((skill, index) => (
                         <span 
                           key={index} 
-                          className="px-3 py-1 bg-accent/10 text-accent text-sm rounded-full"
+                          className="px-3 py-1 bg-accent/30 text-accent-foreground text-sm rounded-full"
                         >
                           {skill}
                         </span>
@@ -271,7 +271,7 @@ export default function About() {
                       {skills.languages.map((language, index) => (
                         <span 
                           key={index} 
-                          className="px-3 py-1 bg-dark/10 text-dark text-sm rounded-full"
+                          className="px-3 py-1 bg-white/10 text-foreground text-sm rounded-full"
                         >
                           {language}
                         </span>
@@ -285,7 +285,7 @@ export default function About() {
         </section>
 
         {/* Timeline */}
-        <section className="section bg-white">
+        <section className="section bg-transparent">
           <div className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -336,9 +336,9 @@ export default function About() {
                       >
                         <div className="space-y-4">
                           {period.events.map((event, eventIndex) => (
-                            <div key={eventIndex} className="bg-white rounded-lg shadow-sm p-4 border-l-4 border-primary">
+                            <div key={eventIndex} className="glass-card rounded-lg shadow-sm p-4 border-l-4 border-primary">
                               <h4 className="text-lg font-bold">{event.title}</h4>
-                              <p className="text-gray-600">{event.description}</p>
+                              <p className="text-muted-foreground">{event.description}</p>
                             </div>
                           ))}
                         </div>

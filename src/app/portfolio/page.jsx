@@ -141,7 +141,7 @@ export default function Portfolio() {
         </section>
 
         {/* Work Experience */}
-        <section className="section bg-white">
+        <section className="section bg-transparent">
           <div className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -162,7 +162,7 @@ export default function Portfolio() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="bg-white rounded-xl shadow-md overflow-hidden"
+                  className="glass-card rounded-xl shadow-md overflow-hidden"
                 >
                   <div className="p-8">
                     <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
@@ -170,16 +170,16 @@ export default function Portfolio() {
                         <h3 className="text-2xl font-bold text-primary">{exp.company}</h3>
                         <p className="text-xl font-semibold">{exp.position}</p>
                       </div>
-                      <span className="text-gray-500 mt-2 md:mt-0">{exp.period}</span>
+                      <span className="text-muted-foreground mt-2 md:mt-0">{exp.period}</span>
                     </div>
-                    <p className="text-gray-700 mb-4">{exp.description}</p>
+                    <p className="text-foreground mb-4">{exp.description}</p>
                     <div className="mb-6">
                       <h4 className="text-lg font-semibold mb-2">Key Achievements:</h4>
                       <ul className="space-y-2">
                         {exp.achievements.map((achievement, i) => (
                           <li key={i} className="flex items-start">
                             <span className="text-primary mr-2">•</span>
-                            <span>{achievement}</span>
+                            <span className="text-muted-foreground">{achievement}</span>
                           </li>
                         ))}
                       </ul>
@@ -202,7 +202,7 @@ export default function Portfolio() {
         </section>
 
         {/* Projects */}
-        <section className="section bg-light">
+        <section className="section bg-transparent">
           <div className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -223,14 +223,14 @@ export default function Portfolio() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="card h-full flex flex-col"
+                  className="card glass-card h-full flex flex-col"
                 >
                   <div className="h-48 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
                     <span className="text-2xl font-bold text-primary">{project.title.charAt(0)}</span>
                   </div>
                   <div className="p-6 flex-grow flex flex-col">
                     <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                    <p className="text-gray-600 mb-4 flex-grow">{project.description}</p>
+                    <p className="text-muted-foreground mb-4 flex-grow">{project.description}</p>
                     <div className="flex flex-wrap gap-2 mb-4">
                       {project.technologies.slice(0, 3).map((tech, i) => (
                         <span 
@@ -241,7 +241,7 @@ export default function Portfolio() {
                         </span>
                       ))}
                       {project.technologies.length > 3 && (
-                        <span className="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">
+                        <span className="px-3 py-1 bg-secondary/30 text-secondary-foreground text-sm rounded-full">
                           +{project.technologies.length - 3} more
                         </span>
                       )}
