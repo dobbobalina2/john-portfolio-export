@@ -32,39 +32,39 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed w-full z-50 transition-all duration-300 border-b ${
+        className={`fixed w-full z-50 transition-all duration-300 ${
           scrolled
-            ? 'bg-background/80 backdrop-blur-xl border-border/40 py-2'
-            : 'bg-transparent border-transparent py-4'
+            ? 'bg-white/70 backdrop-blur-xl border-b border-black/10 py-2 shadow-[0_8px_30px_rgba(15,23,42,0.08)]'
+            : 'bg-transparent border-b border-transparent py-4'
         }`}
       >
         <div className="container-width">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div className="flex-shrink-0 relative group cursor-pointer z-50">
-              <Link href="/" className="font-heading text-2xl font-bold tracking-tighter">
+              <Link href="/" className="font-heading text-2xl font-semibold tracking-tight">
                 <span className="text-foreground group-hover:text-primary transition-colors">John</span>
-                <span className="text-primary group-hover:text-foreground transition-colors">.dev</span>
+                <span className="text-primary group-hover:text-foreground transition-colors"> Kenny</span>
               </Link>
             </div>
 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-1">
-              <div className="flex items-center bg-secondary/30 backdrop-blur-sm px-2 py-1.5 rounded-full border border-white/5 mr-4">
+              <div className="flex items-center bg-white/70 backdrop-blur-sm px-2 py-1.5 rounded-full border border-black/10 mr-4 shadow-sm">
                 {navigation.map((item) => {
                   const isActive = pathname === item.href;
                   return (
                     <Link
                       key={item.name}
                       href={item.href}
-                      className={`relative px-4 py-2 text-sm font-medium transition-colors rounded-full ${
-                        isActive ? 'text-primary' : 'text-muted-foreground hover:text-foreground'
+                      className={`relative px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] transition-colors rounded-full ${
+                        isActive ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
                       }`}
                     >
                       {isActive && (
                         <motion.div
                           layoutId="navbar-indicator"
-                          className="absolute inset-0 bg-secondary/80 rounded-full -z-10"
+                          className="absolute inset-0 bg-foreground/5 rounded-full -z-10"
                           transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
                         />
                       )}
@@ -76,7 +76,7 @@ export default function Navbar() {
               
               <Button 
                 variant="default" 
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-lg shadow-primary/20"
+                className="bg-foreground hover:bg-foreground/90 text-background font-semibold shadow-[0_12px_30px_rgba(15,23,42,0.2)] rounded-full px-6"
                 asChild
               >
                 <Link href="/contact">Hire Me</Link>
@@ -105,7 +105,7 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl md:hidden pt-24 px-6"
+            className="fixed inset-0 z-40 bg-white/90 backdrop-blur-xl md:hidden pt-24 px-6"
           >
             <div className="flex flex-col space-y-4">
               {navigation.map((item, idx) => (

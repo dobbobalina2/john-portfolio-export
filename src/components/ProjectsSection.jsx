@@ -36,30 +36,33 @@ export default function ProjectsSection() {
   ];
 
   return (
-    <section id="projects" className="section-padding bg-background relative overflow-hidden">
-        {/* Decorative Grid */}
-        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:30px_30px] -z-10" />
-
+    <section id="projects" className="section-padding relative">
       <div className="container-width">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="flex flex-col md:flex-row justify-between items-end mb-20 gap-4"
+          className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6"
         >
-          <div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">Featured <span className="text-gradient-primary">Projects</span></h2>
-              <p className="text-muted-foreground max-w-xl text-lg">
-                A selection of my recent work, ranging from high-performance dApps to enterprise-scale platforms.
-              </p>
+          <div className="max-w-2xl">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="hairline" />
+              <span className="eyebrow">Selected Work</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-semibold mb-4">
+              Featured <span className="text-gradient-primary">Projects</span>
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              A curated set of platforms and systems where performance, UX, and cryptographic rigor all had to coexist.
+            </p>
           </div>
           <Button variant="outline" className="hidden md:flex" asChild>
-            <Link href="/portfolio" className="flex items-center justify-center">View Entire Portfolio</Link>
+            <Link href="/portfolio">View Entire Portfolio</Link>
           </Button>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <motion.div
               key={index}
@@ -69,41 +72,37 @@ export default function ProjectsSection() {
               viewport={{ once: true }}
               className="group"
             >
-              <div className="relative h-full"> 
-                {/* Glow Effect */}
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/50 to-blue-600/50 rounded-2xl blur opacity-0 group-hover:opacity-75 transition duration-500 will-change-transform" />
-                
-                <Card className="relative h-full flex flex-col bg-card border-white/10 overflow-hidden">
+              <div className="relative h-full">
+                <Card className="relative h-full flex flex-col surface border-black/10 overflow-hidden">
                   <CardHeader>
-                    <div className="flex justify-between items-start mb-2">
-                        <Badge variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20 pointer-events-none">
-                            {project.company}
-                        </Badge>
-                        <div className="flex gap-2">
-                           {/* Placeholder links since not provided in data */}
-                           <Button size="icon" variant="ghost" className="h-8 w-8 text-muted-foreground hover:text-foreground">
-                             <Github className="h-4 w-4" />
-                           </Button>
-                           <Button size="icon" variant="ghost" className="h-8 w-8 text-muted-foreground hover:text-foreground">
-                             <ExternalLink className="h-4 w-4" />
-                           </Button>
-                        </div>
+                    <div className="flex justify-between items-start mb-3">
+                      <Badge variant="secondary" className="bg-white/80 text-foreground border border-black/10">
+                        {project.company}
+                      </Badge>
+                      <div className="flex gap-2">
+                        <Button size="icon" variant="ghost" className="h-9 w-9 text-muted-foreground hover:text-foreground">
+                          <Github className="h-4 w-4" />
+                        </Button>
+                        <Button size="icon" variant="ghost" className="h-9 w-9 text-muted-foreground hover:text-foreground">
+                          <ExternalLink className="h-4 w-4" />
+                        </Button>
+                      </div>
                     </div>
-                    <CardTitle className="text-2xl font-bold group-hover:text-primary transition-colors">
+                    <CardTitle className="text-2xl font-semibold group-hover:text-primary transition-colors">
                       {project.title}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="flex-grow">
-                    <CardDescription className="text-base leading-relaxed text-muted-foreground/80">
+                    <CardDescription className="text-base leading-relaxed text-muted-foreground">
                       {project.description}
                     </CardDescription>
                   </CardContent>
-                  <CardFooter className="pt-4 border-t border-white/5 bg-secondary/5">
+                  <CardFooter className="pt-6 border-t border-black/5 bg-white/60">
                     <div className="flex flex-wrap gap-2 w-full">
                       {project.tags.map((tag, tagIndex) => (
-                        <span 
-                          key={tagIndex} 
-                          className="px-2.5 py-1 text-xs font-medium text-muted-foreground bg-background border border-border rounded-md group-hover:border-primary/30 transition-colors"
+                        <span
+                          key={tagIndex}
+                          className="px-3 py-1 text-xs font-semibold text-muted-foreground bg-white/70 border border-black/10 rounded-full"
                         >
                           {tag}
                         </span>
@@ -115,10 +114,10 @@ export default function ProjectsSection() {
             </motion.div>
           ))}
         </div>
-        
-        <div className="mt-12 text-center md:hidden">
+
+        <div className="mt-10 text-center md:hidden">
           <Button size="lg" className="w-full" asChild>
-            <Link href="/portfolio" className="flex items-center justify-center">View All Projects</Link>
+            <Link href="/portfolio">View All Projects</Link>
           </Button>
         </div>
       </div>

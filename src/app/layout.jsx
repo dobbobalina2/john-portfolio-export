@@ -1,8 +1,9 @@
-import { Inter, Montserrat } from 'next/font/google';
+import { Space_Grotesk, Fraunces } from 'next/font/google';
 import './globals.css';
+import Background from '@/components/Background';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat' });
+const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-sans' });
+const fraunces = Fraunces({ subsets: ['latin'], variable: '--font-display' });
 
 export const metadata = {
   title: 'John Kenny | Senior Software Engineer',
@@ -11,8 +12,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`dark ${inter.variable} ${montserrat.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${spaceGrotesk.variable} ${fraunces.variable}`} suppressHydrationWarning>
       <body className="bg-background text-foreground">
+        <Background />
         {children}
       </body>
     </html>

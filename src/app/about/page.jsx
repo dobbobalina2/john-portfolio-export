@@ -101,16 +101,20 @@ export default function About() {
       <Navbar />
       <main className="pt-16">
         {/* Header */}
-        <section className="bg-gradient-to-r from-primary/10 to-accent/10 py-20">
-          <div className="container mx-auto px-4">
+        <section className="section-padding">
+          <div className="container-width">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-center"
+              className="text-left max-w-3xl"
             >
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">About Me</h1>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="hairline" />
+                <span className="eyebrow">About</span>
+              </div>
+              <h1 className="text-4xl md:text-5xl font-semibold mb-4">About Me</h1>
+              <p className="text-xl text-muted-foreground">
                 Learn more about my background, skills, and professional journey.
               </p>
             </motion.div>
@@ -119,7 +123,7 @@ export default function About() {
 
         {/* Bio Section */}
         <section className="section bg-transparent">
-          <div className="container mx-auto px-4">
+          <div className="container-width">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
@@ -177,7 +181,7 @@ export default function About() {
 
         {/* Education & Skills */}
         <section className="section bg-transparent">
-          <div className="container mx-auto px-4">
+          <div className="container-width">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -271,7 +275,7 @@ export default function About() {
                       {skills.languages.map((language, index) => (
                         <span 
                           key={index} 
-                          className="px-3 py-1 bg-white/10 text-foreground text-sm rounded-full"
+                          className="px-3 py-1 bg-white/70 border border-black/10 text-foreground text-sm rounded-full"
                         >
                           {language}
                         </span>
@@ -286,7 +290,7 @@ export default function About() {
 
         {/* Timeline */}
         <section className="section bg-transparent">
-          <div className="container mx-auto px-4">
+          <div className="container-width">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

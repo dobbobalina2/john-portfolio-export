@@ -106,16 +106,20 @@ export default function Contact() {
       <Navbar />
       <main className="pt-16">
         {/* Header */}
-        <section className="bg-gradient-to-r from-primary/10 to-accent/10 py-20">
-          <div className="container mx-auto px-4">
+        <section className="section-padding">
+          <div className="container-width">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-center"
+              className="text-left max-w-3xl"
             >
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Me</h1>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="hairline" />
+                <span className="eyebrow">Contact</span>
+              </div>
+              <h1 className="text-4xl md:text-5xl font-semibold mb-4">Contact Me</h1>
+              <p className="text-xl text-muted-foreground">
                 Have a project in mind or want to discuss potential opportunities? I'd love to hear from you.
               </p>
             </motion.div>
@@ -124,7 +128,7 @@ export default function Contact() {
 
         {/* Contact Form & Info */}
         <section className="section bg-transparent">
-          <div className="container mx-auto px-4">
+          <div className="container-width">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Contact Form */}
               <motion.div
@@ -145,7 +149,7 @@ export default function Contact() {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-secondary/20 border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-foreground placeholder-muted-foreground"
+                      className="input-field"
                       placeholder="Your Name"
                       required
                     />
@@ -160,7 +164,7 @@ export default function Contact() {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-secondary/20 border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-foreground placeholder-muted-foreground"
+                      className="input-field"
                       placeholder="Your Email"
                       required
                     />
@@ -175,7 +179,7 @@ export default function Contact() {
                       name="subject"
                       value={formData.subject}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-secondary/20 border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-foreground placeholder-muted-foreground"
+                      className="input-field"
                       placeholder="Subject"
                       required
                     />
@@ -190,7 +194,7 @@ export default function Contact() {
                       value={formData.message}
                       onChange={handleChange}
                       rows={5}
-                      className="w-full px-4 py-3 bg-secondary/20 border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-foreground placeholder-muted-foreground"
+                      className="input-field min-h-[160px]"
                       placeholder="Your Message"
                       required
                     ></textarea>
@@ -275,7 +279,7 @@ export default function Contact() {
 
         {/* Map or Additional Section */}
         <section className="section bg-transparent">
-          <div className="container mx-auto px-4">
+          <div className="container-width">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

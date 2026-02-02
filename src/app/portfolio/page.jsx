@@ -145,16 +145,20 @@ export default function Portfolio() {
       <Navbar />
       <main className="pt-16">
         {/* Header */}
-        <section className="bg-gradient-to-r from-primary/10 to-accent/10 py-20">
-          <div className="container mx-auto px-4">
+        <section className="section-padding">
+          <div className="container-width">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-center"
+              className="text-left max-w-3xl"
             >
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">My Portfolio</h1>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="hairline" />
+                <span className="eyebrow">Portfolio</span>
+              </div>
+              <h1 className="text-4xl md:text-5xl font-semibold mb-4">My Portfolio</h1>
+              <p className="text-xl text-muted-foreground">
                 A showcase of my professional experience and projects in software engineering, 
                 web development, and blockchain technology.
               </p>
@@ -164,7 +168,7 @@ export default function Portfolio() {
 
         {/* Work Experience */}
         <section className="section bg-transparent">
-          <div className="container mx-auto px-4">
+          <div className="container-width">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -225,7 +229,7 @@ export default function Portfolio() {
 
         {/* Projects */}
         <section className="section bg-transparent">
-          <div className="container mx-auto px-4">
+          <div className="container-width">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

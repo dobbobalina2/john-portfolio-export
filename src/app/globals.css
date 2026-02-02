@@ -4,100 +4,173 @@
 
 @layer base {
   :root {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
+    --background: 210 33% 97%;
+    --foreground: 222 22% 12%;
 
-    --card: 222 47% 11%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 22% 12%;
 
-    --popover: 222 47% 11%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 22% 12%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 222 47.4% 11.2%;
+    --primary: 221 83% 52%;
+    --primary-foreground: 210 40% 98%;
 
-    --secondary: 217 19% 27%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 210 24% 94%;
+    --secondary-foreground: 222 16% 22%;
 
-    --muted: 217 19% 27%;
-    --muted-foreground: 215 27% 85%; /* Increased lightness for better visibility on dark backgrounds */
- /* Made lighter (closer to white) for better visibility on dark background, or darker if on white? User said "on white background". If background is white, text should be Black. If background is Dark, text should be White. User said "light grey text on white background we need to make it darker". */
-    /* Assuming user sees White cards, then light grey text is invisible. So I need to make muted-foreground DARKER (lower L value in HSL) */
-    /* Wait, my theme is Dark. If user sees White, maybe they are seeing the fallback? or they explicitly want a light theme? */
-    /* I will adjust it to be a medium grey that works on both, or assume Dark theme and assume user was confused about "white background" (maybe they meant proper contrast). */
-    /* Actually, "Light grey text on a white background" - implies a component IS white. */
-    /* If components are glass (bg-secondary/5 -> basically transparent dark), text is on dark. */
-    /* BUT if they navigate to /contact (separate page), maybe it doesn't share layout? */
-    /* I'll start by making the text higher contrast. */
-    /* Original: 215 20.2% 65.1% */
-    /* New High Contrast: 215 25% 80% (for dark mode) or 215 25% 40% (for light mode). */
-    /* Since I am enforcing Dark Mode in layout, I will assume background is Dark and user meant "Light grey text is too faint". */
-    /* I will set it to 85% lightness for better readability on dark. */
-    /* AND just in case, I will make sure the foreground is strong. */
-    /* Wait, "make it darker". Light grey on white = invisible. Dark grey on white = visible. */
-    /* If I am in Dark Mode, Light Grey on Dark = Visible. Dark Grey on Dark = Invisible. */
-    /* User said "make it darker". This implies they are seeing a WHITE background. */
-    /* I will change the variable to be safe for light mode too? No, I'll just change the variable. */
-    
-    --muted: 217 19% 27%;
-    --muted-foreground: 215 20% 65%; /* Keeping as is? No. */
+    --muted: 210 24% 94%;
+    --muted-foreground: 215 16% 40%;
 
-    /* I will modify global to ensure background is set to a solid dark color just in case */
-
-    --accent: 217 19% 27%;
+    --accent: 188 75% 43%;
     --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 72% 45%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217 19% 27%;
-    --input: 217 19% 27%;
-    --ring: 224 76% 48%;
+    --border: 214 20% 86%;
+    --input: 214 20% 86%;
+    --ring: 221 83% 52%;
 
-    --radius: 0.5rem;
+    --radius: 1rem;
   }
 
   * {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold tracking-tight;
+    @apply font-heading tracking-tight;
   }
 }
 
 @layer components {
-  .glass {
-    @apply bg-background/60 backdrop-blur-lg border border-white/10;
-  }
-  
-  .glass-card {
-    @apply glass rounded-xl shadow-xl transition-all duration-300 hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/10;
-  }
-
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-blue-300;
-  }
-  
-  .text-gradient-primary {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600;
-  }
-
   .container-width {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
   .section-padding {
-    @apply py-20 md:py-32;
+    @apply py-20 md:py-28;
   }
-  
+
   .section {
-    @apply py-20 md:py-32;
+    @apply py-20 md:py-28;
+  }
+
+  .surface {
+    @apply bg-white/70 backdrop-blur-xl border border-black/5 shadow-[0_10px_40px_rgba(15,23,42,0.08)];
+  }
+
+  .surface-strong {
+    @apply bg-white/90 backdrop-blur-xl border border-black/10 shadow-[0_20px_60px_rgba(15,23,42,0.14)];
+  }
+
+  .surface-soft {
+    @apply bg-white/55 backdrop-blur border border-black/5 shadow-[0_8px_24px_rgba(15,23,42,0.06)];
+  }
+
+  .glass-card {
+    @apply surface rounded-2xl;
+  }
+
+  .pill {
+    @apply inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-foreground/80;
+  }
+
+  .eyebrow {
+    @apply text-xs uppercase tracking-[0.35em] text-muted-foreground;
+  }
+
+  .text-gradient-primary {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-cyan-500 to-pink-500;
+  }
+
+  .text-gradient-iridescent {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-cyan-500 to-fuchsia-500;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold tracking-wide transition;
+  }
+
+  .btn-primary {
+    @apply bg-foreground text-background shadow-[0_14px_30px_rgba(15,23,42,0.18)] hover:bg-foreground/90;
+  }
+
+  .btn-outline {
+    @apply border border-foreground/20 text-foreground hover:bg-foreground/5;
+  }
+
+  .input-field {
+    @apply w-full rounded-2xl border border-black/10 bg-white/70 px-4 py-3 text-sm text-foreground shadow-[0_10px_30px_rgba(15,23,42,0.08)] placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30;
+  }
+
+  .hairline {
+    @apply h-px w-12 bg-foreground/15;
+  }
+
+  .gemini-background {
+    position: fixed;
+    inset: 0;
+    z-index: -30;
+    overflow: hidden;
+    background-image: url('/images/gemini_background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: saturate(1.05) contrast(1.05);
+  }
+
+  .gemini-background::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.8), transparent 50%),
+      radial-gradient(circle at 85% 25%, rgba(59, 130, 246, 0.15), transparent 55%),
+      radial-gradient(circle at 70% 80%, rgba(236, 72, 153, 0.12), transparent 60%);
+  }
+
+  .gemini-background::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(248, 250, 252, 0.9) 0%, rgba(248, 250, 252, 0.65) 45%, rgba(248, 250, 252, 0.92) 100%);
+  }
+
+  .gemini-orbit {
+    position: absolute;
+    right: -10%;
+    top: 8%;
+    width: 420px;
+    height: 420px;
+    border-radius: 999px;
+    background: conic-gradient(from 90deg, rgba(59, 130, 246, 0.35), rgba(14, 165, 233, 0.3), rgba(236, 72, 153, 0.25), rgba(59, 130, 246, 0.35));
+    filter: blur(40px);
+    opacity: 0.55;
+    animation: float-slow 16s ease-in-out infinite;
+  }
+
+  .gemini-orbit-secondary {
+    position: absolute;
+    left: -12%;
+    bottom: 10%;
+    width: 320px;
+    height: 320px;
+    border-radius: 999px;
+    background: conic-gradient(from 180deg, rgba(14, 165, 233, 0.25), rgba(59, 130, 246, 0.25), rgba(236, 72, 153, 0.2));
+    filter: blur(32px);
+    opacity: 0.45;
+    animation: float-slow 18s ease-in-out infinite reverse;
   }
 }
 
-@layer utilities {
-  /* Removed bg-grid-white to fix build error */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -18px, 0);
+  }
 }
