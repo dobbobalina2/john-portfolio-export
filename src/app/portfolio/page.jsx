@@ -7,26 +7,46 @@ import Footer from '@/components/Footer';
 export default function Portfolio() {
   const experiences = [
     {
+      company: "Freelance",
+      position: "Software Engineer / Quantitative Trader",
+      period: "06/2021 - Present",
+      description: "Independently trade and build quantitative systems across crypto and sports markets.",
+      achievements: [
+        "Independently trade and manage a large, self-funded cryptocurrency portfolio, conducting market research, risk analysis, and strategy optimization across multiple market regimes",
+        "Designed, trained, and evaluated 100+ machine learning and statistical models to identify profitable player-prop betting opportunities with advanced feature engineering, calibration, and backtesting",
+        "Architected an end-to-end ETL pipeline ingesting, cleaning, and storing ~4GB of structured and time-series data to support daily automated model training and inference",
+        "Built production-grade data workflows for reliable daily model execution, performance tracking, and rapid iteration on new strategies",
+        "Developed and released an open-source npm package implementing a zero-knowledge proof–based email authentication wallet solution for privacy-preserving Web3 authentication",
+        "Built a sequence-based Transformer encoder to predict calibrated NBA 3-point make probabilities with multi-threshold heads (over 1.5/2.5/3.5) using per-player temporal features and strict time-based splits",
+        "Implemented masked BCE training, monotonic head constraints, and probability calibration, reducing Brier score by ~20% and improving reliability versus tree-based baselines",
+        "Integrated odds devigging, EV estimation, and quarter-Kelly backtesting, increasing ROI in high-EV bins by ~5% with stable drawdowns"
+      ],
+      technologies: ["Python", "Machine Learning", "ETL", "Time-Series", "Backtesting", "NPM", "Zero-Knowledge", "Transformers"]
+    },
+    {
       company: "Mattereum",
-      position: "Business Consultant",
+      position: "Business Consultant / Senior Software Engineer",
       period: "10/2023 - 06/2024",
-      description: "Led tokenization plans for $100+ million in assets and executed strategies to increase liquidity and utility.",
+      description: "Led asset tokenization strategy and built supporting smart-contract infrastructure.",
       achievements: [
         "Led and developed tokenization plans for $100+ million in assets with multiple stakeholders, including multi-billion dollar hedge funds",
         "Created and executed a full lifecycle plan to bring increased liquidity to the product, utility for the product, and capital for the business, resulting in 5 unique partnerships with the top RWA companies in crypto",
-        "Crafted and executed a token sale plan to help the company raise $2.5 million from new investors, which required coordination between 5 different external parties"
+        "Crafted and executed a token sale plan to help the company raise $2.5 million from new investors, including $1 million from my network, coordinating 5 external parties",
+        "Built an asset tokenization wrapper in Solidity and Hardhat with robust automated testing"
       ],
-      technologies: ["Tokenomics", "Blockchain", "Business Development", "Strategic Planning"]
+      technologies: ["Tokenomics", "Blockchain", "Business Development", "Strategic Planning", "Solidity", "Hardhat"]
     },
     {
       company: "Consortium 9",
       position: "Senior Software Engineer",
-      period: "04/2022 - 09/2023",
+      period: "02/2022 - 09/2023",
       description: "Developed web3 applications and high-performance systems for gaming platforms.",
       achievements: [
-        "Developed a web3-enabled minting site in two weeks using TypeScript, web3.js, React, Vercel, and StyledComponents, generating over $100,000+ in revenue",
-        "Engineered a single sign-in wallet for a gaming platform, utilizing Nest.js, MongoDB, Solidity, React, and ZkProof, resulting in a 15% improvement in user retention rates",
-        "Provided valuable insights and guidance on tokenomics, introducing innovative incentives based on game-theoretic behavior in a gaming project",
+        <>Built the Consortium 9 minting site in two weeks using TypeScript, web3.js, React, Vercel, Solidity, and StyledComponents (<a href="https://web.archive.org/web/20220721195845/https://consortium9.co/" className="text-primary hover:underline">archived site</a>), generating over $100,000+ in revenue</>,
+        "Engineered a single sign-in wallet for a gaming platform using Nest.js, MongoDB, Solidity, React, and ZkProof, improving user retention by 15% through reduced wait times and friction",
+        <>Launched NFT collections <a href="https://opensea.io/collection/the-second-aspect-of-the-nine" className="text-primary hover:underline">The Second Aspect of the Nine</a> and <a href="https://opensea.io/collection/the-third-aspect-of-the-nine" className="text-primary hover:underline">The Third Aspect of the Nine</a>, reaching $3.5M lifetime volume with a 30 ETH all-time-high sale</>,
+        "Contributed in collaborative sessions with the C-suite on tokenomics design, product roadmap development, and feature feasibility for a blockchain-based gaming project",
+        "Evaluated feature feasibility, sequenced roadmap priorities, and identified technical and economic tradeoffs to guide product planning",
         "Designed and architected a high-performance Leaderboard, utilizing AWS, Redis, MongoDB, Lambda, and an event-driven architecture, achieving a 35% improvement in read and write speeds"
       ],
       technologies: ["TypeScript", "React", "Web3.js", "Nest.js", "MongoDB", "Solidity", "AWS", "Redis", "Lambda"]
@@ -35,11 +55,11 @@ export default function Portfolio() {
       company: "Soundverse",
       position: "Senior FullStack Engineer",
       period: "09/2021 - 01/2022",
-      description: "Rebuilt frontend and optimized smart contract integration for blockchain-based music platform.",
+      description: "Rebuilt frontend and optimized smart-contract integration for a blockchain-based music platform.",
       achievements: [
         "Rebuilt the frontend from an existing codebase to the design specification",
         "Optimized smart contract functionality integration time by 21% through a carefully chosen tech stack, including Next.js, Nest.js, GraphQL backend, HTML, CSS3, Node.js, and Git",
-        "Utilized and contributed features to the new Web3.js framework, UseDapp"
+        "Utilized and contributed features to the new Web3.js framework, UseDapp, and Solidity"
       ],
       technologies: ["Next.js", "Nest.js", "GraphQL", "HTML", "CSS3", "Node.js", "Web3.js", "UseDapp"]
     },
@@ -47,25 +67,27 @@ export default function Portfolio() {
       company: "DLTX",
       position: "Head of Technology",
       period: "03/2021 - 09/2021",
-      description: "Designed financial products and led development teams for blockchain technology.",
+      description: "Designed financial products and led technology strategy for blockchain initiatives.",
       achievements: [
         "Designed hedging products for cross-digital asset lending deals ranging from $10M to $100M, effectively reducing lending risk by 85% while preserving 90% of the upside",
         "Developed and designed cutting-edge financial models that effectively mitigated the risk of potential losses of $10M+ for the company, aligning with current market conditions",
-        "Led a team to develop protocol improvements, mobile/web dApps, a bridge, and a block explorer for the Factom blockchain, achieving a 43% reduction in time to production"
+        "Led a team to develop protocol improvements, mobile/web dApps, a bridge, and a block explorer for the Factom blockchain, achieving a 43% reduction in time to production",
+        "Interfaced daily with the CEO on analytics, product strategy, and financial risk modeling for digital-asset mining operations",
+        "Led product ideation and technical exploration for portfolio companies across blockchain infrastructure and enterprise use cases",
+        "Partnered with C-suite and external stakeholders to draft African Union RFP responses, proposing a permissioned blockchain architecture for sovereign and institutional use"
       ],
       technologies: ["Financial Modeling", "Blockchain", "dApps", "Team Leadership", "Risk Management"]
     },
 
     {
       company: "Bam Marketing",
-      position: "Full Stack Developer",
-      period: "08/2019 - 07/2020",
-      description: "Migrated and modernized a legacy news site while designing and developing a new platform end-to-end, using PHP, Linux, JavaScript, HTML, CSS3, and MySQL.",
+      position: "FullStack Engineer",
+      period: "08/2019 - 01/2021",
+      description: "Migrated and modernized a legacy news site while designing and developing a new platform end-to-end.",
       achievements: [
         "Led the successful migration of a 15-year-old legacy news site from Joomla 1.3 to Joomla 3.0, managing over 30,000 data points within its MySQL database.",
         "Demonstrated the ability to quickly learn and adapt by taking ownership of the project despite having no prior experience with PHP at the outset.",
-        "Designed, developed, and launched a completely new website for the same client, handling both front-end development and back-end maintenance.",
-"Upgraded archaic infrastructure to utilize the LAMP stack, driving incident reports down 43% and decreasing user reported bugs by 27%",
+        "Upgraded archaic infrastructure to utilize the LAMP stack, driving incident reports down 43% and decreasing user-reported bugs by 27%",
         "Responsibilities included front-end UI development, backend bug fixing, database management, and ongoing optimization for performance and reliability."
       ],
       technologies: ["PHP", "Linux", "JavaScript", "HTML", "CSS3", "MySQL"]
