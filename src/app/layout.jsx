@@ -1,9 +1,8 @@
-import { Space_Grotesk, Fraunces } from 'next/font/google';
+import { Space_Grotesk, IBM_Plex_Mono } from 'next/font/google';
 import './globals.css';
-import Background from '@/components/Background';
 
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-sans' });
-const fraunces = Fraunces({ subsets: ['latin'], variable: '--font-display' });
+const plexMono = IBM_Plex_Mono({ subsets: ['latin'], weight: ['400', '500'], variable: '--font-mono' });
 
 export const metadata = {
   metadataBase: new URL('https://portfolio-lilac-ten-34.vercel.app'),
@@ -18,10 +17,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${fraunces.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${spaceGrotesk.variable} ${plexMono.variable}`}>
       <body className="bg-background text-foreground">
         <a href="#main-content" className="skip-link">Skip to content</a>
-        <Background />
         {children}
       </body>
     </html>

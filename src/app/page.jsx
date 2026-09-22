@@ -10,10 +10,10 @@ export default function Home() {
     <>
       <Navbar />
       <main id="main-content">
-      <HeroSection />
-      <AboutSection />
-      <ProjectsSection />
-      <ContactSection />
+        <HeroSection />
+        <ProjectsSection />
+        <AboutSection />
+        <ContactSection />
       </main>
       <Footer />
     </>

@@ -11,7 +11,7 @@ npm run dev -- --hostname 127.0.0.1 --port 3012
 
 Open http://127.0.0.1:3012. For a production preview, run `npm run build`, then
 `npm run start -- --hostname 127.0.0.1 --port 3012`. The existing `next/font/google`
-setup fetches Fraunces and Space Grotesk at build time, so the initial build needs network access.
+setup fetches Space Grotesk and IBM Plex Mono at build time, so the initial build needs network access.
 
 ## Edit content
 
@@ -29,6 +29,8 @@ The older NFT interface demo remains at `/portfolio/project` as a separate demo.
 
 See [content sources and editorial rules](docs/content-sources.md) for the source of
 public claims, distinctions between experiments and releases, and update guidance.
+See [visual direction](docs/visual-direction.md) for the portfolio's typography,
+color, layout, and accessibility conventions.
 
 Build output belongs in the ignored `.next/` directory, never in commits.
 This update is intended for local review; pushing or deploying is a separate action.

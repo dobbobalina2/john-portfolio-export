@@ -59,7 +59,8 @@ module.exports = {
       },
       fontFamily: {
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
-        heading: ['var(--font-display)', 'Georgia', 'serif'],
+        heading: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'monospace'],
       },
       keyframes: {
         "accordion-down": {
