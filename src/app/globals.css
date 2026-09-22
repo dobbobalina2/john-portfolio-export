@@ -41,12 +41,25 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
   }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 4px;
+  }
+  [id] {
+    scroll-margin-top: 7rem;
+  }
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading tracking-tight;
   }
 }
 
 @layer components {
+  .skip-link {
+    @apply sr-only;
+  }
+  .skip-link:focus {
+    @apply not-sr-only fixed top-3 left-3 z-[100] bg-white text-foreground px-5 py-3 rounded-xl shadow-lg;
+  }
   .container-width {
     @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
   }
@@ -163,6 +176,15 @@
     filter: blur(32px);
     opacity: 0.45;
     animation: float-slow 18s ease-in-out infinite reverse;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

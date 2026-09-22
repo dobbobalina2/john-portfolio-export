@@ -1,361 +1,41 @@
-'use client';
-
-import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { Download } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { experiences, profile, skills } from '@/lib/portfolio';
+
+export const metadata = { title: 'Experience', description: 'John Kenny’s experience across computer vision, AI/ML, full-stack engineering, fintech, and blockchain.' };
 
 export default function About() {
-  const education = {
-    university: "University of Maryland College Park",
-    location: "College Park, MD",
-    degree: "Bachelor of Engineering, Major Computer Science",
-    year: "2021"
-  };
-
-  const skills = {
-    technical: [
-      "React", "TypeScript", "JavaScript", "Web3.js", "Solidity", 
-      "Next.js", "Nest.js", "AWS", "MongoDB", "Redis",
-      "CSS", "Tailwind", "Python", "Rust"
-    ],
-    management: [
-      "SDLC (Software Development Life Cycle)", 
-      "Resource Planning", 
-      "Jira", 
-      "MS Project"
-    ],
-    finance: [
-      "Tokenomics", 
-      "Derivatives creation", 
-      "Derivatives hedging", 
-      "Financial modeling"
-    ],
-    languages: ["English", "German", "Spanish"]
-  };
-
-  const timeline = [
-    {
-      year: "2021",
-      events: [
-        {
-          title: "Graduated from University of Maryland",
-          description: "Earned Bachelor of Engineering in Computer Science"
-        },
-        {
-          title: "Started at DLTX",
-          description: "Joined as Head of Technology, designing hedging products and leading development teams"
-        },
-        {
-          title: "Joined Soundverse",
-          description: "Worked as Senior FullStack Engineer, rebuilding frontend and optimizing smart contract integration"
-        }
-      ]
-    },
-    {
-      year: "2022",
-      events: [
-        {
-          title: "Joined Consortium 9",
-          description: "Started as Senior Software Engineer, developing web3 applications and high-performance systems"
-        },
-        {
-          title: "Developed Web3 Minting Site",
-          description: "Created a platform generating over $100,000 in revenue"
-        }
-      ]
-    },
-    {
-      year: "2023",
-      events: [
-        {
-          title: "Engineered Single Sign-in Wallet",
-          description: "Built a solution that improved user retention by 15%"
-        },
-        {
-          title: "Designed High-Performance Leaderboard",
-          description: "Achieved 35% improvement in read and write speeds"
-        },
-        {
-          title: "Joined Mattereum",
-          description: "Started as Business Consultant, leading tokenization plans for $100+ million in assets"
-        }
-      ]
-    },
-    {
-      year: "2024",
-      events: [
-        {
-          title: "Executed Token Sale Plan",
-          description: "Helped raise $2.5 million from new investors"
-        },
-        {
-          title: "Created Partnership Strategy",
-          description: "Established 5 unique partnerships with top RWA companies in crypto"
-        }
-      ]
-    }
-  ];
-
   return (
-    <>
-      <Navbar />
-      <main className="pt-16">
-        {/* Header */}
-        <section className="section-padding">
-          <div className="container-width">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-left max-w-3xl"
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <span className="hairline" />
-                <span className="eyebrow">About</span>
-              </div>
-              <h1 className="text-4xl md:text-5xl font-semibold mb-4">About Me</h1>
-              <p className="text-xl text-muted-foreground">
-                Learn more about my background, skills, and professional journey.
-              </p>
-            </motion.div>
+    <><Navbar /><main id="main-content" className="pt-16">
+      <section className="section-padding">
+        <div className="container-width">
+          <p className="eyebrow mb-5">About / Experience</p>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold max-w-3xl mb-7">AI engineering, built on a software foundation.</h1>
+          <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl">{profile.summary}</p>
+          <div className="flex flex-wrap gap-4 mt-8"><a href={profile.resume} download className="btn btn-primary gap-2"><Download size={17} aria-hidden="true" /> Download resume (DOCX)</a><Link href="/portfolio" className="btn btn-outline">Explore projects</Link></div>
+        </div>
+      </section>
+      <section className="pb-20" aria-labelledby="experience-heading">
+        <div className="container-width">
+          <h2 id="experience-heading" className="text-3xl md:text-4xl font-semibold mb-10">Professional experience</h2>
+          <div className="divide-y divide-black/10">
+            {experiences.map((experience) => (
+              <article key={experience.company} className="py-9 grid md:grid-cols-[1fr_2fr] gap-5 md:gap-12">
+                <div><p className="text-sm text-muted-foreground">{experience.period}</p><h3 className="text-2xl font-semibold mt-2">{experience.company}</h3><p className="text-sm text-muted-foreground mt-2">{experience.location}</p></div>
+                <div><p className="text-lg font-semibold mb-4">{experience.role}</p><ul className="list-disc pl-5 space-y-3 text-muted-foreground leading-relaxed">{experience.points.map((point) => <li key={point}>{point}</li>)}</ul></div>
+              </article>
+            ))}
           </div>
-        </section>
-
-        {/* Bio Section */}
-        <section className="section bg-transparent">
-          <div className="container-width">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                className="order-2 lg:order-1"
-              >
-                <h2 className="text-3xl font-bold mb-6">My Story</h2>
-                <div className="space-y-4 text-muted-foreground">
-                  <p>
-                    I'm John Kenny, a Senior Software Engineer with a passion for building innovative digital solutions. 
-                    My journey in technology began at the University of Maryland College Park, where I earned my Bachelor's 
-                    degree in Computer Science in 2021.
-                  </p>
-                  <p>
-                    Throughout my career, I've had the opportunity to work with cutting-edge technologies across various domains, 
-                    from web development to blockchain applications. I specialize in creating high-performance, scalable applications 
-                    using React, TypeScript, and modern web frameworks.
-                  </p>
-                  <p>
-                    My experience spans both technical development and business strategy, allowing me to bridge the gap between 
-                    complex technical solutions and real-world business needs. I've led teams, designed financial models, and 
-                    developed tokenization strategies that have generated significant revenue and improved user experiences.
-                  </p>
-                  <p>
-                    I'm particularly interested in the intersection of traditional finance and blockchain technology, where I've 
-                    helped companies design innovative products and raise capital through strategic partnerships.
-                  </p>
-                </div>
-              </motion.div>
-              
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="order-1 lg:order-2"
-              >
-                <div className="relative w-full h-[500px] glass-card rounded-2xl overflow-hidden shadow-xl border border-white/10">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-32 h-32 rounded-full bg-primary/20 mx-auto mb-6 flex items-center justify-center">
-                        <span className="text-5xl font-bold text-primary">JK</span>
-                      </div>
-                      <p className="text-lg font-medium text-foreground">John Kenny</p>
-                      <p className="text-muted-foreground">Senior Software Engineer</p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* Education & Skills */}
-        <section className="section bg-transparent">
-          <div className="container-width">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold mb-4">Education & Skills</h2>
-              <div className="w-20 h-1 bg-primary mx-auto"></div>
-            </motion.div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              {/* Education */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                className="glass-card rounded-xl shadow-md p-8"
-              >
-                <h3 className="text-2xl font-bold mb-6">Education</h3>
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 bg-primary/10 p-4 rounded-full">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path d="M12 14l9-5-9-5-9 5 9 5z" />
-                      <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
-                    </svg>
-                  </div>
-                  <div className="ml-6">
-                    <h4 className="text-xl font-bold">{education.university}</h4>
-                    <p className="text-muted-foreground mb-2">{education.location}</p>
-                    <p className="text-foreground mb-1">{education.degree}</p>
-                    <p className="text-primary font-semibold">{education.year}</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Skills */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="glass-card rounded-xl shadow-md p-8"
-              >
-                <h3 className="text-2xl font-bold mb-6">Skills</h3>
-                <div className="space-y-6">
-                  <div>
-                    <h4 className="text-lg font-semibold mb-3">Technical Skills</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {skills.technical.map((skill, index) => (
-                        <span 
-                          key={index} 
-                          className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold mb-3">Program Management</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {skills.management.map((skill, index) => (
-                        <span 
-                          key={index} 
-                          className="px-3 py-1 bg-secondary/30 text-secondary-foreground text-sm rounded-full"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold mb-3">Finance</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {skills.finance.map((skill, index) => (
-                        <span 
-                          key={index} 
-                          className="px-3 py-1 bg-accent/30 text-accent-foreground text-sm rounded-full"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold mb-3">Languages</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {skills.languages.map((language, index) => (
-                        <span 
-                          key={index} 
-                          className="px-3 py-1 bg-white/70 border border-black/10 text-foreground text-sm rounded-full"
-                        >
-                          {language}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* Timeline */}
-        <section className="section bg-transparent">
-          <div className="container-width">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl font-bold mb-4">Professional Journey</h2>
-              <div className="w-20 h-1 bg-primary mx-auto"></div>
-            </motion.div>
-
-            <div className="relative">
-              {/* Timeline line */}
-              <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-primary/20"></div>
-              
-              {/* Timeline items */}
-              <div className="space-y-12">
-                {timeline.map((period, periodIndex) => (
-                  <div key={periodIndex} className="relative">
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.4 }}
-                      viewport={{ once: true }}
-                      className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 -top-4 w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold z-10"
-                    >
-                      {period.year.slice(-2)}
-                    </motion.div>
-                    
-                    <div className="ml-12 md:ml-0 md:grid md:grid-cols-2 md:gap-8">
-                      <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                        viewport={{ once: true }}
-                        className="md:text-right md:pr-8 mb-4 md:mb-0"
-                      >
-                        <h3 className="text-2xl font-bold text-primary">{period.year}</h3>
-                      </motion.div>
-                      
-                      <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6, delay: 0.4 }}
-                        viewport={{ once: true }}
-                        className="md:pl-8"
-                      >
-                        <div className="space-y-4">
-                          {period.events.map((event, eventIndex) => (
-                            <div key={eventIndex} className="glass-card rounded-lg shadow-sm p-4 border-l-4 border-primary">
-                              <h4 className="text-lg font-bold">{event.title}</h4>
-                              <p className="text-muted-foreground">{event.description}</p>
-                            </div>
-                          ))}
-                        </div>
-                      </motion.div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </>
+        </div>
+      </section>
+      <section className="section-padding border-t border-black/10 bg-white/55" aria-labelledby="skills-heading">
+        <div className="container-width">
+          <p className="eyebrow mb-5">Tools & methods</p><h2 id="skills-heading" className="text-3xl md:text-4xl font-semibold mb-10">Across the stack</h2>
+          <div className="grid md:grid-cols-2 gap-9">{skills.map((group) => <div key={group.title}><h3 className="text-xl font-semibold mb-4">{group.title}</h3><div className="flex flex-wrap gap-2">{group.items.map((skill) => <span key={skill} className="border border-black/10 bg-white/75 rounded-full px-3 py-2 text-sm">{skill}</span>)}</div></div>)}</div>
+        </div>
+      </section>
+    </main><Footer /></>
   );
 }

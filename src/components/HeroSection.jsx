@@ -1,90 +1,47 @@
-'use client';
-
-import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowDownRight, ArrowRight, Download } from 'lucide-react';
+import { profile } from '@/lib/portfolio';
 
 export default function HeroSection() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 18, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: 'spring',
-        stiffness: 110,
-      },
-    },
-  };
-
   return (
-    <section className="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden">
-      <div className="container-width z-10">
-        <div className="grid grid-cols-1 gap-12 items-center">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="text-left"
-          >
-            <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-3 mb-6">
-              <span className="eyebrow">Senior Software Engineer</span>
-            </motion.div>
-
-            <motion.h1 variants={itemVariants} className="text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.05]">
-              I design and ship <span className="text-gradient-iridescent">Web3 systems</span> with product-grade polish.
-            </motion.h1>
-
-            <motion.p variants={itemVariants} className="mt-6 text-lg md:text-xl text-muted-foreground max-w-xl">
-              I am John Kenny, a senior engineer focused on performance, clean architecture, and interfaces that feel alive.
-              From decentralized platforms to enterprise analytics, I build software people trust and love to use.
-            </motion.p>
-
-            <motion.div variants={itemVariants} className="mt-8 flex flex-wrap gap-4">
-              <Button size="lg" className="text-base" asChild>
-                <a href="#projects" className="flex items-center gap-2">
-                  View Work <ArrowRight className="h-4 w-4" />
-                </a>
-              </Button>
-              <Button size="lg" variant="outline" className="text-base" asChild>
-                <a href="/contact">Start a Project</a>
-              </Button>
-            </motion.div>
-
-            <motion.div variants={itemVariants} className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <section className="relative pt-36 pb-20 md:pt-44 md:pb-28">
+      <div className="container-width">
+        <p className="eyebrow mb-7">{profile.title}</p>
+        <div className="grid lg:grid-cols-[1.35fr_1fr] gap-12 lg:gap-16 items-center">
+          <div>
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-semibold leading-[1.06]">
+              From pixels to<br /><span className="text-primary">working AI systems.</span>
+            </h1>
+            <p className="mt-7 text-lg text-muted-foreground max-w-xl leading-relaxed">{profile.summary}</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="/portfolio" className="btn btn-primary gap-2">Explore my work <ArrowRight size={17} aria-hidden="true" /></Link>
+              <a href={profile.resume} download className="btn btn-outline gap-2"><Download size={17} aria-hidden="true" /> Resume <span className="text-xs text-muted-foreground">DOCX</span></a>
+            </div>
+            <div className="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-sm text-muted-foreground">
+              <span>Python & PyTorch</span><span>Image & video models</span><span>Production software</span>
+            </div>
+          </div>
+          <aside className="surface-strong rounded-3xl p-7 sm:p-9" aria-label="Current research focus">
+            <div className="flex items-center justify-between gap-4 mb-7">
+              <span className="eyebrow">Current focus</span>
+              <span className="rounded-full bg-blue-50 border border-blue-200 px-3 py-1 text-xs text-blue-800">Prospex</span>
+            </div>
+            <h2 className="text-3xl font-semibold mb-3">Learning from<br />football film.</h2>
+            <p className="text-muted-foreground leading-relaxed">Image representations, video encoders, and evaluation grounded in reviewed data.</p>
+            <ol className="mt-8 divide-y divide-black/10">
               {[
-                { label: 'Focus', value: 'Web3 + Product UX' },
-                { label: 'Experience', value: '5+ Years Shipping' },
-              ].map((item) => (
-                <div key={item.label} className="surface rounded-2xl p-4">
-                  <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{item.label}</p>
-                  <p className="mt-2 text-base font-semibold text-foreground">{item.value}</p>
-                </div>
+                ['01', 'Build the evidence', 'Reviewed labels · paired camera views'],
+                ['02', 'Compare representations', 'DINOv2 · VideoMAE · V-JEPA2'],
+                ['03', 'Test generalization', 'Held-out games · temporal controls'],
+              ].map(([number, title, detail]) => (
+                <li key={number} className="flex gap-4 py-5">
+                  <span className="text-xs font-mono text-primary pt-1">{number}</span>
+                  <div><p className="font-semibold">{title}</p><p className="text-sm text-muted-foreground mt-1">{detail}</p></div>
+                </li>
               ))}
-            </motion.div>
-
-            <motion.div variants={itemVariants} className="mt-10">
-              <p className="eyebrow mb-4">Core Stack</p>
-              <div className="flex flex-wrap gap-3">
-                {['Next.js', 'TypeScript', 'Solidity', 'Node.js', 'AWS'].map((item) => (
-                  <span key={item} className="surface-soft rounded-full px-4 py-2 text-sm font-medium text-foreground/80">
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          </motion.div>
+            </ol>
+            <Link href="/portfolio#image-representations" className="inline-flex items-center gap-2 text-sm font-semibold text-primary mt-3">Read the engineering notes <ArrowDownRight size={17} aria-hidden="true" /></Link>
+          </aside>
         </div>
       </div>
     </section>

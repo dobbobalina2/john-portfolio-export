@@ -8,3 +8,5 @@ node_modules
 .next
 
 .next/*
+*.tsbuildinfo
+.DS_Store

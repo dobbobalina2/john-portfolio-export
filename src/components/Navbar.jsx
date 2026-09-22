@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button';
 const navigation = [
   { name: 'Home', href: '/' },
   { name: 'Portfolio', href: '/portfolio' },
-  { name: 'About', href: '/about' },
+  { name: 'Experience', href: '/about' },
   { name: 'Contact', href: '/contact' },
 ];
 
@@ -21,17 +21,27 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 20;
-      setScrolled(isScrolled);
+      setScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKey = (event) => {
+      if (event.key === 'Escape') setIsOpen(false);
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [isOpen]);
 
   return (
     <>
       <nav
+        aria-label="Main navigation"
         className={`fixed w-full z-50 transition-all duration-300 ${
           scrolled
             ? 'bg-white/70 backdrop-blur-xl border-b border-black/10 py-2 shadow-[0_8px_30px_rgba(15,23,42,0.08)]'
@@ -57,6 +67,7 @@ export default function Navbar() {
                     <Link
                       key={item.name}
                       href={item.href}
+                      aria-current={isActive ? 'page' : undefined}
                       className={`relative px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] transition-colors rounded-full ${
                         isActive ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
                       }`}
@@ -88,6 +99,9 @@ export default function Navbar() {
               <Button
                 variant="ghost"
                 size="icon"
+                aria-label={isOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={isOpen}
+                aria-controls="mobile-navigation"
                 onClick={() => setIsOpen(!isOpen)}
                 className="text-foreground hover:bg-secondary/50"
               >
@@ -102,10 +116,11 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            id="mobile-navigation"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-white/90 backdrop-blur-xl md:hidden pt-24 px-6"
+            className="fixed inset-x-4 top-20 z-40 bg-white/95 backdrop-blur-xl border border-black/10 rounded-2xl shadow-xl md:hidden p-6"
           >
             <div className="flex flex-col space-y-4">
               {navigation.map((item, idx) => (
@@ -117,6 +132,7 @@ export default function Navbar() {
                 >
                   <Link
                     href={item.href}
+                    aria-current={pathname === item.href ? 'page' : undefined}
                     onClick={() => setIsOpen(false)}
                     className={`text-2xl font-bold tracking-tight block py-2 ${
                        pathname === item.href ? 'text-primary' : 'text-foreground'
@@ -133,7 +149,7 @@ export default function Navbar() {
                 className="pt-8"
               >
                  <Button className="w-full text-lg py-6" onClick={() => setIsOpen(false)} asChild>
-                    <Link href="/contact">Let's Work Together</Link>
+                    <Link href="/contact">Get in touch</Link>
                  </Button>
               </motion.div>
             </div>
